@@ -317,6 +317,14 @@ GET /products?category=vegetables&sort=price&order=asc&limit=5
 ### Webhook Test
 
 POST https://farmlokal-backend-erh1.onrender.com/webhook
+Body : 
+{
+  "event": "order.updated",
+  "id": 123
+}
+Header : 
+Content-Type : application/json
+x-event-d : 123456
 
 ### Metrics
 
