@@ -38,9 +38,11 @@ GET https://farmlokal-backend-erh1.onrender.com/
 
 POST POST https://farmlokal-backend-erh1.onrender.com/webhook
 
-Headers (Required)
-x-event-id: test123
-Content-Type: application/json
+Body:
+{
+  "event": "order.updated",
+  "id": 123
+}
 
 Headers (Required)
 x-event-id: test123
