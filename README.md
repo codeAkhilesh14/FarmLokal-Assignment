@@ -77,35 +77,46 @@ Example Response:
     "totalPages": 0
   }
 }
-🔹 Webhook API
-Endpoint:
+```
+## 🔹 Webhook API
+
+**Endpoint**
 
 POST /webhook
-Headers Required:
 
-x-event-id: unique-event-id
+**Headers Required**
+
+x-event-id: unique-event-id  
 Content-Type: application/json
-Sample Body:
+
+**Sample Body**
 
 {
   "event": "order.updated",
   "id": 123
 }
-Responses:
+
+**Responses**
 
 First request:
 
 { "message": "Processed" }
+
 Duplicate request:
 
 { "message": "Duplicate ignored" }
-This ensures idempotency using Redis.
 
-🔹 Metrics API
-Endpoint:
+This ensures **idempotency using Redis**.
+
+---
+
+## 🔹 Metrics API
+
+**Endpoint**
 
 GET /metrics
-Example Response:
+
+**Example Response**
 
 {
   "uptime": 123.45,
@@ -116,38 +127,50 @@ Example Response:
   },
   "timestamp": "2026-02-06T10:53:16.000Z"
 }
-⚙ Environment Variables
-Create a .env file for local development:
+
+---
+
+## ⚙ Environment Variables
+
+Create a `.env` file for local development:
 
 PORT=5000
 
-MYSQL_HOST=localhost
-MYSQL_PORT=3306
-MYSQL_USER=root
-MYSQL_PASSWORD=your_password
-MYSQL_DB=farmlokal
+MYSQL_HOST=localhost  
+MYSQL_PORT=3306  
+MYSQL_USER=root  
+MYSQL_PASSWORD=your_password  
+MYSQL_DB=farmlokal  
 
-REDIS_HOST=localhost
-REDIS_PORT=6379
+REDIS_HOST=localhost  
+REDIS_PORT=6379  
 
-OAUTH_URL=https://mock-oauth.com/token
-OAUTH_CLIENT_ID=client123
-OAUTH_CLIENT_SECRET=secret123
-Production (Render) Environment Variables
+OAUTH_URL=https://mock-oauth.com/token  
+OAUTH_CLIENT_ID=client123  
+OAUTH_CLIENT_SECRET=secret123  
+
+---
+
+### Production (Render) Environment Variables
+
 PORT=5000
 
-MYSQL_HOST=your-aiven-host
-MYSQL_PORT=your-aiven-port
-MYSQL_USER=your-aiven-user
-MYSQL_PASSWORD=your-aiven-password
-MYSQL_DB=defaultdb
+MYSQL_HOST=your-aiven-host  
+MYSQL_PORT=your-aiven-port  
+MYSQL_USER=your-aiven-user  
+MYSQL_PASSWORD=your-aiven-password  
+MYSQL_DB=defaultdb  
 
-REDIS_URL=redis://your-render-redis-url
+REDIS_URL=redis://your-render-redis-url  
 
-OAUTH_URL=https://mock-oauth.com/token
-OAUTH_CLIENT_ID=client123
-OAUTH_CLIENT_SECRET=secret123
-🧩 Project Structure
+OAUTH_URL=https://mock-oauth.com/token  
+OAUTH_CLIENT_ID=client123  
+OAUTH_CLIENT_SECRET=secret123  
+
+---
+
+## 🧩 Project Structure
+
 backend/
 │
 ├── src/
@@ -187,83 +210,148 @@ backend/
 ├── tsconfig.json
 ├── docker-compose.yml
 └── .dockerignore
-🛠 Installation & Setup
-1️⃣ Clone Repository
-git clone https://github.com/codeAkhilesh14/FarmLokal-Assignment.git
-cd FarmLokal-Assignment/backend
-2️⃣ Install Dependencies
+
+---
+
+## 🛠 Installation & Setup
+
+### 1️⃣ Clone Repository
+
+git clone https://github.com/codeAkhilesh14/FarmLokal-Assignment.git  
+cd FarmLokal-Assignment/backend  
+
+---
+
+### 2️⃣ Install Dependencies
+
 npm install
-3️⃣ Start Development Server
+
+---
+
+### 3️⃣ Start Development Server
+
 npm run dev
+
 Server will run at:
 
 http://localhost:5000
-4️⃣ Seed Database
+
+---
+
+### 4️⃣ Seed Database
+
 To populate initial product data:
 
 npm run seed
-Ensure .env points to the correct MySQL database before running seed.
 
-5️⃣ Build for Production
+Ensure `.env` points to the correct MySQL database before running seed.
+
+---
+
+### 5️⃣ Build for Production
+
 npm run build
-6️⃣ Run Production Server
+
+---
+
+### 6️⃣ Run Production Server
+
 npm start
-🐳 Docker Support (Optional)
+
+---
+
+## 🐳 Docker Support (Optional)
+
 Run using Docker:
 
 docker-compose up
-🚀 Deployment
-Platform
-Backend: Render
 
-Database: Aiven MySQL
+---
 
-Cache: Render Redis Key-Value Store
+## 🚀 Deployment
 
-Render Configuration
-Build Command
+### Platform
+
+- Backend: **Render**
+- Database: **Aiven MySQL**
+- Cache: **Render Redis Key-Value Store**
+
+### Render Configuration
+
+**Build Command**
 
 npm install && npm run build
-Start Command
+
+**Start Command**
 
 node dist/server.js
-🧪 How to Test After Deployment
-Products API
+
+---
+
+## 🧪 How to Test After Deployment
+
+### Products API
+
 GET https://farmlokal-backend-erh1.onrender.com/products
-Pagination
+
+### Pagination
+
 GET /products?page=2&limit=10
-Sorting
+
+### Sorting
+
 GET /products?sort=price&order=desc
-Search
+
+### Search
+
 GET /products?search=Product
-Filter
+
+### Filter
+
 GET /products?category=fruits
-Combined Query
+
+### Combined Query
+
 GET /products?category=vegetables&sort=price&order=asc&limit=5
-Webhook Test
+
+### Webhook Test
+
 POST https://farmlokal-backend-erh1.onrender.com/webhook
-Metrics
+
+### Metrics
+
 GET https://farmlokal-backend-erh1.onrender.com/metrics
-🔐 Reliability & Performance Features
-Redis-based caching
 
-Rate limiting
+---
 
-Webhook idempotency
+## 🔐 Reliability & Performance Features
 
-Efficient DB queries
+- Redis-based caching  
+- Rate limiting  
+- Webhook idempotency  
+- Efficient DB queries  
+- Structured logging  
+- Optimized API responses  
 
-Structured logging
+---
 
-Optimized API responses
+## 📜 Trade-offs
 
-📜 Trade-offs
-Used TypeORM synchronize for simplicity (not recommended for large production systems)
+- Used TypeORM synchronize for simplicity (not recommended for large production systems)  
+- Mock OAuth implementation used  
+- Basic Redis caching strategy for demo purposes  
 
-Mock OAuth implementation used
+---
 
-Basic Redis caching strategy for demo purposes
+## 👨‍💻 Author
 
+**Akhilesh Verma**
+
+---
+
+## 📄 License
+
+MIT License
 👨‍💻 Author
 Akhilesh Verma
 
