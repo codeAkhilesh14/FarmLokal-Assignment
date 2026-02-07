@@ -206,6 +206,7 @@ OAUTH_CLIENT_SECRET=secret123
 
 ## 🧩 Project Structure
 
+```
 backend/
 │
 ├── src/
@@ -245,6 +246,7 @@ backend/
 ├── tsconfig.json
 ├── docker-compose.yml
 └── .dockerignore
+```
 
 ---
 
